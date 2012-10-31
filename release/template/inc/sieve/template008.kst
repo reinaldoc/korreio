@@ -1,0 +1,21 @@
+[General]
+file name = vacation if not spam.siv
+display name = Vacation if not Spam
+
+[SieveScript]
+require ["vacation","fileinto"];
+
+if header :contains "X-Spam-Flag" "YES" {
+    fileinto "INBOX%(sep)Spam";
+    stop;
+}
+
+vacation :days 5
+:subject "I am on vacation"
+:addresses ["#USER#@%(domain)"]
+"I will be on vacation at days ....
+
+Thank you,
+
+--
+User Sign";

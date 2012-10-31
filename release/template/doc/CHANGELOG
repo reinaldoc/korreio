@@ -1,0 +1,215 @@
+INFO:
+- Send feature request to reinaldoc{NO-SPAM}gmail.com
+
+TODO:
+- Code design: configuration file with simmetric encryption.
+
+20090512:
+- Code design: icons from Crystal Project (www.everaldo.com/crystal/) added.
+- Ldap: CSV to LDIF converter tool.
+- Ldap: new sort mode, objectClass first.
+- Imap: virtual domains support.
+- Imap: export mailbox list, quota, acl and annotation support.
+- Imap Partition: select information to retrieve.
+- Imap Partition: show last pop3 connection and last mailbox update.
+- Imap Partition: export data to csv.
+- Imap Partition (BugFix): column sort fixed.
+- Queue: search message on queue by sender/recipient support.
+- Queue: show recipient already sent for a message.
+- Queue: new sort mode, number of messages first.
+
+20090327:
+- Code design: v20090302 don't start properly on Windows.
+- Ldap: modify rdn improvent for dn with childrens (HDB support).
+- Ldap (BugFix): error handling referrals.
+
+20090302:
+- Code design: new layout with menuBar.
+- Code design: ldap code improvements.
+- Ldap: change QListViewItem background color when add attribute.
+- Ldap: Wizard to add posix/samba groups.
+- Queue: show recipients already sent.
+- Sieve: unhardencoded sieve templates to directory.
+- Sieve: sieve helper (requires, conditions and actions) on context menu (right mouse button) to make easy create scripts.
+
+20090122:
+- Code design: python-cyrus (python-cyrus.sf.net) updated to 0.8.4.
+- Imap: encoding/decoding 8bit imap caracters codification to Korreio interface codepage.
+- Imap (BugFix): error handling failed mailbox rename.
+- Ldap: Add dhcpGroup wizard.
+- Ldap: Referral support improvements.
+- Ldap (BugFix): disable modify when entry is a referral.
+- Ldap (BugFix): dhcpHost tooltip typo error.
+- Ldap (BugFix): error changing DN for existing upper case attribute.
+- Ldap (BugFix): update ldap cache properly when changing DN with 8bit caracters.
+- Ldap (BugFix): update ldap cache properly when changing DN with multivalued attribute.
+- Ldap (BugFix): update ldap cache properly when remove attribute.
+- Ldap (BugFix): invalid hash for root userPassword from samba populate.
+
+20090101:
+- Ldap: Add DHCP host/subnet/shared network form.
+- Ldap: DHCP populate support.
+- Ldap (BugFix): error when connection refused.
+- Services: change to fixed font and don't wordwrap.
+- Queue: translate information description.
+- Config: select DN for new user entries (w/ Wizard)
+- Config: Ldap->DHCP->populate entries preferences.
+- Code design: IMAP methods optimized avoiding unnecessary queries.
+- Code design: connection methods optimized.
+- Code design (BugFix): error find localization path.
+- Package: README updated (Know Tips section).
+- Package: Icon added.
+
+20081206:
+- Code design: Localization support.
+- Code design: New localization en_US.
+- Code design: New localization pt_BR.
+- Code design: self.console() improvements.
+- Imap (BugFix): error listing not existent parent folder.
+- Ldap (BugFix): unable select first ldap filter history.
+- Ldap (BugFix): disable modify when entry not in search results.
+
+20081125:
+- Imap: rename user mailbox support.
+- Imap Partition: show/set quota and show percentage.
+- Imap Partition (BugFix): menu dont list servers.
+- Sieve: select all add to menu, button removed.
+- Sieve (BugFix): menu dont list servers.
+- Services: [re]start/stop ldap, postfix, cyrus.
+- Queue (Bugfix): remove MAILER-DAEMON (without @ users).
+- Queue (Bugfix): show messages sometimes failed.
+- Config: Imap server annotation moved to servers/imap.
+
+20080622:
+- Select server from Menu.
+- python-cyrus (http://python-cyrus.sf.net) updated to 0.8.2.
+- Minor improvements.
+
+20080601:
+- Ldap: add menu options.
+- Ldap: copy and paste subtree support.
+- Ldap: modify dn for entries with childs support.
+- SSH: connection cache completed.
+- Queue: menu context support.
+- Queue: flush, show, hold, unhold, requeue, remove messages support.
+- Queue: show message arrival time.
+- Queue: show size of messages by user.
+- Queue: show message in the queue option.
+- Postfix module renamed to Services Management.
+- Services: save file work only as root remote login.
+- Config: sudo (NOPASSWD) support (ssh connection).
+- Config: manage preferred ldap filters.
+- Code design: config->Preferences->LDAP->Schema rewrited.
+
+20080522:
+- Korreio: keyboard shortcut support.
+- BugFix (introduced 20080518): wrong menu position.
+
+20080520:
+- Ldap: organization form support.
+- Ldap: delete and create basedn support.
+- BugFix (introduced 20080518): wrong basedn in ldap_search.
+
+20080518:
+- Ldap: change rdn support (copy, cut and paste entries).
+- Ldap: delete subtree support.
+- BugFix (introduced initial version): ldap tree error when parent dn have different upper/lower case.
+
+20080511:
+- Ldap: sambaSamAccount form support.
+- Ldap: get next free Uid from uid counter ldap entry (sambaSamAccount).
+- Ldap: get next free Uid by basedn search (posixAccount).
+- Ldap: astSipGeneric form support.
+- Ldap: radiusProfile form support.
+- Ldap: populate samba entries support.
+- Ldap: new error messages (Undefined attribute type/Object class violation).
+- Config: Imap default folders with expire support.
+- Config: Ldap->SMB netbios domains information.
+- Config: Ldap->SMB->populate entries preferences.
+- Config: Ldap->Schema auxiliary schema activate option.
+- Config: Log viewer.
+- Config: auto-complete ldap admin option: admin/manager.
+- Code designer: config_save() rewrited.
+
+20080414:
+- Ldap: New useradd form: inetOrgPerson and posixAccount support.
+- Config: multi-base auto-complete user cn=admin support.
+- Code design: Splitter to resize windows.
+
+20080405:
+- Ldap: attributes full-cache.
+- Ldap: fastest entry add.
+- Ldap: fix fastest entry modification.
+- Ldap: full latin characters support.
+- Imap: fix imap-acl wizard comboBox.
+- Imap: multiples add/deletion ACL support.
+- Imap Partition: show size for each mailbox.
+- Code design: methods ordereds by module.
+- Code design: console() updated.
+- Code design: better status messages.
+
+20080329:
+- Ldap: fastest entry modification.
+- Ldap: ldap autentication warning.
+- Imap: ACL interface rewrited.
+- Queue: show size of each message
+- Queue: fix error when active queue clicked.
+- Conf: forms cleaned when connection changed.
+
+20080308:
+- Ldap entry deletion confirmation.
+- Imap mailbox deletion confirmation.
+- Python modules detection.
+
+20080302:
+- Mail Queue general improvements.
+- BugFix minors Mail Queue errors.
+
+20080219:
+- New Module: Mail Queue Manager.
+- SSH connection cache.
+- Ldap: auto-scroll selected item.
+- Ldap: fastest entry deletion.
+- Imap: auto-scroll selected item.
+- Imap: fastest mailbox deletion.
+- Imap Partition: fix "select all" error.
+- Sieve: Add "disable script" button.
+
+20080213:
+- URGENT: fix imap deletion overflow.
+
+20080131:
+- Imap partition search improvements (error handling mailbox with blank caracter).
+- Postfix Manager: add button to run postmap on hash files.
+- BugFix first time config loading 
+
+20080110:
+- BugFix ~/.korreio/korreio.conf creation.
+
+20080109:
+- BugFix LDAP referrer support (error handling referral).
+- New Password sub-module.
+
+20080108:
+- BugFix LDAP attribute addition (error add multi-valued attr).
+
+20080107:
+- BugFix IMAP connection (error changing server).
+
+20080106:
+- New module: Sieve Manager.
+- Detect from server IMAP separator.
+
+20080104:
+- New module: IMAP Partition Manager.
+- Support LDAP entries with non-ascii caracters.
+- Configuration module rewrited.
+
+20080101:
+- LDAP edit entries support, now LDAP Manager.
+
+20071231:
+- Add LDAP SSL support.
+- Ldap search option now have editable attribute entry.
+- Add button "Nel ACL" to imap shared to clean forms.
+- BugFix size limit exceeded return.

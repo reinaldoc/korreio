@@ -1,0 +1,15 @@
+[General]
+file name = vacation.siv
+display name = Vacation
+
+[SieveScript]
+require "vacation";
+vacation :days 5
+:subject "I am on vacations"
+:addresses ["#USER#@%(domain)"]
+"I will be on vacation at days ....
+
+Thank you,
+
+--
+User Sign";

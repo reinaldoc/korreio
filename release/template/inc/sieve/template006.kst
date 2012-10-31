@@ -1,0 +1,8 @@
+[General]
+file name = discard spam.siv
+display name = Discard Spam
+
+[SieveScript]
+if header :contains "X-Spam-Flag" "YES" {
+    discard;
+}

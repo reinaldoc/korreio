@@ -1,0 +1,9 @@
+[General]
+file name = select folder by sender.siv
+display name = Select folder by sender
+
+[SieveScript]
+require "fileinto";
+if address :contains "from" "user@%(domain)" {
+   fileinto "INBOX%(sep)Folder1";
+}

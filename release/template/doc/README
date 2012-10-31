@@ -1,0 +1,170 @@
+Korreio - A administration mail systems tool-kit
+************************************************
+Copyright (C) 2007-2009 Reinaldo de Carvalho <reinaldoc@gmail.com>
+
+1. Information about Korreio
+****************************
+
+    http://korreio.sf.net
+    http://groups.google.com/group/korreio
+
+2. Interface improvement for non-KDE users
+******************************************
+
+    # apt-get install qt3-qtconfig polymer
+    $ qtconfig-qt3
+
+        In the "Appearance" tab, use the select "GUI Style" drop down box and
+    select "Polymer".
+        Click "Tune Palette" button. In the "Central color roles" combobox,
+    select:
+        - "Background" and click to set the colour to R237 G236 B235.
+        - "Highlight" and click to set it to R78 G118 B168.
+        - "Button" and set the colour to R222 G222 B222.
+        Close the tune dialog and open the "Fonts" tab. Change the font Family
+    to sans-serif and the Size to 9 or 10.
+        Click on Menu "File->Save" and quit the utility.
+
+    http://tombuntu.com/index.php/2008/02/11/theme-qt3-applications-in-gnome
+
+3. Dependencies Instalation
+***************************
+
+   3.1 Debian-like
+   ***************
+      # echo 'Aptitude::Recommends-Important "false";' >> /etc/apt/apt.conf
+      # aptitude install python-qt3 python-ldap python-pexpect python-smbpasswd
+
+   3.2 Redhat-like
+   ***************
+      # yum install PyQt python-ldap pexpect python-smbpasswd
+
+   3.3 Windows
+   ***********
+      > python-2.4.4.msi
+      > python-qt3-3.3.4.win32-py2.4.exe
+      > python-ldap-2.0.6.win32-py2.4.exe
+
+4. Running, using and related configuration
+*******************************************
+
+   # Open Korreio and configure services.
+   /path/korreio.py
+
+   4.1 Queue Manager sudo configuration
+   ************************************
+
+       The example above for /etc/sudoers, the user 'operator' can exec only
+   postfix related commands without password request.
+
+       operator   ALL=(ALL) NOPASSWD: /usr/sbin/postqueue, /usr/sbin/postcat, /usr/sbin/postsuper
+
+       And set 'operator' user on Korreio SSH conection.
+
+5. Language
+***********
+
+   Language is detected by $LANG environment variable.
+   Change $LANG to force some language.
+      # LANG=en_US ./korreio.py
+      # LANG=pt_BR ./korreio.py
+
+6. Know Tips
+************
+
+   6.1 Connection timeout to SSH
+   *****************************
+
+       SSH do reverse DNS lookup and cause delay if IP don't have a
+    PTR RR. You always need reverse DNS properly configured.
+       However you can increase the timeout for ssh connection
+    establishment:
+
+    # sed -i 's/login_timeout=20/login_timeout=180/' korreiolib.py
+
+   6.2 Queue manager actions don't work
+   ************************************
+
+       Some SSH queries require 'here strings' functionality, that is
+   available on BASH3. Then is required the change default shell to BASH.
+
+       'here strings' (<<<) example:
+         $ cut -f1,2 -d. <<< '3.1.17(1)-release'
+         > 3.1
+
+   6.3 Queue manager don't show recipients for local users
+   *******************************************************
+
+       Yes, currently Queue Manager don't show message recipients for
+    users without @, commonly from sendmail.postfix (postdrop) command,
+    because current regexp don't match. Maybe I fix one day.
+       Usually there is no reason for these messages to stay in queue,
+    if this often occurs fix the reason.
+
+   6.4 After set expire values cyrus starter is slower
+   ***************************************************
+
+       By default cyrus is configured in cyrus.conf to run delprune to
+   remove expired messages at startup (START). Then messages will be
+   processed before listen for connections. You should disable delprune
+   at startup and add it to EVENTS:
+
+       delprune  cmd="/usr/sbin/cyr_expire -E 3" at=0100
+
+       So messages will be expired at 1pm. all days.
+
+   6.5 Can't connect to sieve
+   **************************
+
+       By default sieve daemon listen at port 2000 only for localhost.
+    You can change cyrus.conf to:
+
+       sieve     cmd="timsieved" listen="sieve" prefork=0 maxchild=100
+
+       You can permit access to port 2000 only for administratives IP
+    on firewall.
+
+7. Know Bugs
+************
+
+   7.1 Korreio crash if a referral references diferrent base DN prefix
+   *******************************************************************
+
+       Korreio support referral only in same base DN. This is a design
+    restriction because Korreio can build tree for only one Base DN.
+
+       Workaround: well, Korreio don't have support to this referral.
+
+       Note: maybe solved on v20090302.
+
+   7.2 Korreio freeze if a referral references non-existent DN
+   ***********************************************************
+
+       This is a python-ldap library problem, is not Korreio specific.
+    Python-ldap freeze and alloc all computer memory until to be killed
+    by kernel if referral references non-existent DN and expand referral
+    is activate.
+
+       Workaround: disable referral expand in ldap connection configuration
+    and setting the referral to reference a existent DN.
+
+   7.3 Error on copy/paste and rename (edit) DN
+   ********************************************
+
+       Korreio after version 20090327 use only method MODRDN to cut/paste
+    and rename (edit) DN, and MODRDN is supported only by HDB.
+       If you don't want migrate now to HDB, you need use Korreio version
+    20090302 to copy and paste entries.
+
+        A simple example to migration BDB to HDB above (backup your data!):
+            # /etc/init.d/slapd stop
+            # slapcat -l backup.ldif
+            # sed -i 's/bdb/hdb/g' /etc/ldap/slapd.conf
+            # rm /var/lib/ldap/*
+            # slapadd -l backup.ldif
+            # slapindex
+            # chown -R openldap: /var/lib/ldap
+            # /etc/init.d/slapd start
+
+End Of Readme
+*************

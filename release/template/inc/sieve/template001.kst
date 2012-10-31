@@ -1,0 +1,6 @@
+[General]
+file name = forward.siv
+display name = Forward
+
+[SieveScript]
+redirect "user@%(domain)";

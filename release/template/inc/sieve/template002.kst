@@ -1,0 +1,7 @@
+[General]
+file name = forward and save.siv
+display name = Forward and save message
+
+[SieveScript]
+redirect "user@%(domain)";
+keep;
