@@ -1,0 +1,3 @@
+*.pyc
+view/_rc.py
+view/MainUI.py
